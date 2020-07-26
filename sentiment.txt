@@ -1,0 +1,7 @@
+from textblob import TextBlob
+
+def t_polarity(lst): 
+    polarity = []
+    for l in lst: 
+        polarity.append(TextBlob(l).sentiment.polarity)
+    return sum(polarity)/len(polarity)
