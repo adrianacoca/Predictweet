@@ -1,0 +1,14 @@
+from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords
+
+def word_exctraction(lst):
+    count_vectorizer = CountVectorizer()
+    sparse_matrix = count_vectorizer.fit_transform(lst) 
+    doc_term_matrix = sparse_matrix.todense()
+    df = pd.DataFrame(doc_term_matrix, columns=count_vectorizer.get_feature_names())
+    all_words = df.sum().sort_values(ascending=[False]).to_dict()   
+    stop_words = set(stopwords.words('english'))
+    tokens_clean = {key: value for (key, value) in all_words.items() if key not in stop_words}
+    return (tokens_clean)
