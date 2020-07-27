@@ -1,7 +1,12 @@
-from textblob import TextBlob
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-def t_polarity(lst): 
-    polarity = []
-    for l in lst: 
-        polarity.append(TextBlob(l).sentiment.polarity)
-    return sum(polarity)/len(polarity)
+def sentiment_scores(sentence): 
+    sid_obj = SentimentIntensityAnalyzer()
+    sentiment_dict = sid_obj.polarity_scores(sentence)
+    return sentiment_dict['compound']
+
+def sentiment_averages_vader(lst):
+    l = []
+    for e in lst: 
+        l.append(sentiment_scores(e))
+    return sum(l)/len(l)
