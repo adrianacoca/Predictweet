@@ -6,6 +6,7 @@ import json
 import pandas as pd
 import numpy as np
 from collections import Counter
+import re
 
 def get_auth():
     load_dotenv()

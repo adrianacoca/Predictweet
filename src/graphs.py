@@ -21,18 +21,18 @@ def plot_retweets(data, user):
     fig.show()
 
 def sentiment_prediction(data, user):
-    y_train = data["sentiments"][0:99]
+    y_train = data["sentiments"]
     model = AR(y_train)
-    model_fit = model.fit(maxlag=3)
-    future_pred = model_fit.predict(start=99, end=105, dynamic=False)
+    model_fit = model.fit(maxlag=1)
+    future_pred = model_fit.predict(start=len(data["sentiments"]), end=105, dynamic=False)
     fig = go.Figure()
     fig.add_trace(go.Scatter(y=data['sentiments'],
                                     mode='lines+markers',
-                                    name='ground truth',
+                                    name='past sentiment',
                                     text=(data['time'])))
     fig.add_trace(go.Scatter(y=future_pred, x=list(range(99,105)),
                                     mode='lines+markers',
-                                    name='predictions',
+                                    name='prediction of future sentiment',
                                     text=(data['time'])))
 
     fig.update_layout(title=f"Sentiment Analysis of @{user} twitter interactions")
