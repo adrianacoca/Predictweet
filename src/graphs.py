@@ -30,7 +30,7 @@ def sentiment_prediction(data, user):
                                     mode='lines+markers',
                                     name='past sentiment',
                                     text=(data['time'])))
-    fig.add_trace(go.Scatter(y=future_pred, x=list(range(99,105)),
+    fig.add_trace(go.Scatter(y=future_pred, x=list(range(len(data["sentiments"]),105)),
                                     mode='lines+markers',
                                     name='prediction of future sentiment',
                                     text=(data['time'])))
