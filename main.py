@@ -75,3 +75,5 @@ def getuser(user):
         gr.plot_hashtags(topics)
     except KeyError:
         return "Too many requests, you will have to wait 15 minutes..."
+    except ValueError: 
+        return "Too many requests, you will have to wait 15 minutes..."
